@@ -7,9 +7,10 @@ interface SearchResultsProps {
     price: number;
     title: string;
   }>
+  onAddToWishList: (id: number) => void;
 }
 
-export function SearchResults({ results }: SearchResultsProps) {
+export function SearchResults({ results, onAddToWishList }: SearchResultsProps) {
   const totalPrice = useMemo(() => {
     return results.reduce((total, product) => {
       return total + product.price;
@@ -22,7 +23,11 @@ export function SearchResults({ results }: SearchResultsProps) {
 
       {results.map(product =>{
         return (
-          <ProductItem product={product} />
+          <ProductItem 
+            key={product.id}
+            product={product} 
+            onAddToWishList={onAddToWishList}
+          />
         );
       })}
     </div>
@@ -44,7 +49,12 @@ export function SearchResults({ results }: SearchResultsProps) {
  */
 
 /**
- * Utilização do useMemo / useCallback
+ * Utilização do useMemo
  * 1. Cálculos pesados
  * 2. Igualdade referencial (quando a gente repassa aquela informação a um componente filho)
+ */
+
+/**
+ * Utilização do useCallback
+ * 1. Igualdade referencial em funções (quando a gente repassa aquela função a um componente filho)
  */
