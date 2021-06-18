@@ -3,3 +3,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 module.exports = withBundleAnalyzer({});
+
+module.exports = {
+  env: {
+    SERVER: process.env.SERVER,
+  },
+};

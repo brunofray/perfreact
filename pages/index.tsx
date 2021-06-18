@@ -20,7 +20,8 @@ export default function Home() {
       return;
     }
 
-    const response = await fetch(`http://localhost:3333/products?q=${search}`);
+    const server  = process.env.SERVER;
+    const response = await fetch(`${server}/products?q=${search}`);
     const data = await response.json();
 
     const formatter = new Intl.NumberFormat('pt-BR', {
